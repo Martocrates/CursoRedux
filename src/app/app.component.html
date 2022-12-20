@@ -1,7 +1,10 @@
 <div class="row text-center">
   <div class="col">
-    <h1>Contador</h1>
+    <h1>Pokemon</h1>
     <h2>{{contador}}</h2>
+      <img src = "{{urlImage}}" alt ="" width="200" height="200">
+      <h2>{{name}}</h2>
+
   </div>
 
 </div>
@@ -9,11 +12,11 @@
 <div class="row text-center">
 
   <div class="col">
+
     <button (click)="incrementar()" class="btn btn-primary">Incrementar</button>
     <button (click)="decrementar()" class="btn btn-info">Decrementar</button>
   </div>
 </div>
-
 
 <!--
 <div class="row text-center">

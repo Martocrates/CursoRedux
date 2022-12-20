@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
 import { DecrementarAction, IncremetarAction } from './contador/contador.action';
+import { PokemonService } from './services/pokemon.service';
 
 interface AppState {
   contador: number;
@@ -15,27 +16,50 @@ export class AppComponent {
 
   contador!: number;
 
-  constructor(private store: Store<AppState>) {
-    //this.contador = 10;
+  name!: string;
+  urlImage: any;
 
+  constructor(private store: Store<AppState>, private pokemonService : PokemonService) {
+    //this.contador = 10;
     this.store.subscribe(state=> {
       this.contador = state.contador;
       //console.log(state);
     })
-
-
+    ngOnInit(); void {
+    }
   }
 
   incrementar(){
-   // this.contador ++;
+    this.contador ++;
 
    const accion = new IncremetarAction();
 
+   this.pokemonService.getPokemonPorId(this.contador).subscribe((data:any)=> {
+    this.urlImage = data.sprites.front_default
+    this.name = data.name;
+
+    console.log(data);
+
+  });
+
    this.store.dispatch (accion);
   }
+/*   -------=============================================== */
   decrementar(){
-   // this.contador --;
+   this.contador --;
     const accion = new DecrementarAction();
+    this.pokemonService.getPokemonPorId(this.contador).subscribe((data:any)=> {
+      this.urlImage = data.sprites.front_default
+      this.name = data.name;
+
+      console.log(data);
+
+    });
+
    this.store.dispatch (accion);
   }
 }
+function ngOnInit() {
+
+}
+
