@@ -20,9 +20,9 @@ export class AppComponent {
   urlImage: any;
 
   constructor(private store: Store<AppState>, private pokemonService : PokemonService) {
-    //this.contador = 10;
     this.store.subscribe(state=> {
       this.contador = state.contador;
+      this.urlImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png"
       //console.log(state);
     })
     ngOnInit(); void {
